@@ -21,6 +21,7 @@ jobs:
           curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
+      - run: ros -e '(print (uiop:getenv "PATH"))' -e '(print (ros:opt "wargv0"))'
       - name: Run tests
         env:
           PATH: ${HOME}/.roswell/bin:${PATH}
