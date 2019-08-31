@@ -22,6 +22,10 @@ jobs:
       - name: Install Rove
         run: ros install rove
       - name: Run tests
-        run: rove qlot.asd
+        run: |
+          echo $PATH
+          ls $HOME/.roswell/bin
+          echo `which ros`
+          rove qlot.asd
         env:
           PATH: ~/.roswell/bin:$PATH
