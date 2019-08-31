@@ -16,7 +16,6 @@ jobs:
       - name: Install Roswell
         env:
           LISP: ${{ matrix.lisp }}
-          ROSWELL_INSTALL_DIR: ${GITHUB_WORKSPACE}/.roswell
         run: |
           curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
       - name: Install Rove
@@ -26,5 +25,5 @@ jobs:
         env:
           PATH: ${HOME}/.roswell/bin:${PATH}
         run: |
-          ros --version
+          /usr/bin/ros -e '(print (uiop:getenv "PATH"))' -e '(print (ros:opt "wargv0"))'
           rove qlot.asd
