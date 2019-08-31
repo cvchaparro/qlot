@@ -21,14 +21,5 @@ jobs:
           curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
-      - name: Debug
-        run:
-          echo $PATH
-          ls $GITHUB_WORKSPACE/.roswell
-          echo `which rove`
-          echo `which ros`
       - name: Run tests
-        env:
-          PATH: ~/.roswell/bin:$GITHUB_WORKSPACE/.roswell/bin:$PATH
-        run: |
-          rove qlot.asd
+        run: rove qlot.asd
