@@ -2,10 +2,6 @@ name: CI
 
 on: [push]
 
-env:
-  PATH: ~/.roswell/bin:$PATH
-  ROSWELL_INSTALL_DIR: $HOME/.roswell
-
 jobs:
   test:
     name: Test with ${{ matrix.lisp }} on ${{ matrix.os }}
@@ -20,9 +16,12 @@ jobs:
       - name: Install Roswell
         env:
           LISP: ${{ matrix.lisp }}
+          ROSWELL_INSTALL_DIR: $HOME/.roswell
         run: |
           curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
       - name: Run tests
         run: rove qlot.asd
+        env:
+          PATH: ~/.roswell/bin:$PATH
