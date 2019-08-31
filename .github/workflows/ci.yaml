@@ -24,4 +24,6 @@ jobs:
       - name: Run tests
         env:
           PATH: ${HOME}/.roswell/bin:${PATH}
-        run: rove qlot.asd
+        run: |
+          ros --version
+          rove qlot.asd
