@@ -16,16 +16,14 @@ jobs:
       - name: Install Roswell
         env:
           LISP: ${{ matrix.lisp }}
-          ROSWELL_INSTALL_DIR: $HOME/.roswell
+          ROSWELL_INSTALL_DIR: $GITHUB_WORKSPACE/.roswell
         run: |
           curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
       - name: Run tests
+        env:
+          PATH: ~/.roswell/bin:$GITHUB_WORKSPACE/.roswell/bin:$PATH
         run: |
           echo $PATH
-          ls $HOME/.roswell/bin
-          echo `which ros`
           rove qlot.asd
-        env:
-          PATH: ~/.roswell/bin:$PATH
