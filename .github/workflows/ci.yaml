@@ -29,12 +29,14 @@ jobs:
           curl -L https://raw.githubusercontent.com/roswell/roswell/master/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
-      - name: Run tests (Ubuntu & macOS)
-        if: matrix.os != 'windows-latest'
+      - name: Add source registry (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: |
+          mkdir -p ~/AppData/Local/config/common-lisp/source-registry.conf.d
+          echo "(:tree \"`pwd`/\")" > ~/AppData/Local/config/common-lisp/source-registry.conf.d/ci.conf
+      - name: Run tests
+        shell: bash
         run: |
           PATH="~/.roswell/bin:$PATH"
           rove qlot.asd
-      - name: Run tests (Windows)
-        if: matrix.os == 'windows-latest'
-        run: |
-          ros -S . -s rove -e '(or (rove:run :qlot/tests) (uiop:quit -1))'
