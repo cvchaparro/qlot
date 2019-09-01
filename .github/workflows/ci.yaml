@@ -17,7 +17,7 @@ jobs:
         env:
           LISP: ${{ matrix.lisp }}
         run: |
-          curl -L https://raw.githubusercontent.com/fukamachi/roswell/ci-github-actions-support/scripts/install-for-ci.sh | sh
+          curl -L https://raw.githubusercontent.com/roswell/roswell/master/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
       - name: Run tests
