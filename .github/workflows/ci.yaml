@@ -28,7 +28,7 @@ jobs:
         run: |
           curl -L https://raw.githubusercontent.com/roswell/roswell/master/scripts/install-for-ci.sh | sh
       - name: Install Rove
-        run: ros install rove
+        run: ros install fukamachi/rove
       - name: Run tests (Ubuntu & macOS)
         if: matrix.os != 'windows-latest'
         run: |
