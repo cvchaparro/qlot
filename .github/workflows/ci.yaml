@@ -16,9 +16,8 @@ jobs:
       - name: Install Roswell
         env:
           LISP: ${{ matrix.lisp }}
+          ROSWELL_INSTALL_DIR: /usr
         run: |
-          uname -s
-          PATH="/usr/local/bin:$PATH"
           curl -L https://raw.githubusercontent.com/fukamachi/roswell/github-actions-tests/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
