@@ -17,13 +17,11 @@ jobs:
         env:
           LISP: ${{ matrix.lisp }}
         run: |
-          curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
+          curl -L https://raw.githubusercontent.com/fukamachi/roswell/ci-github-actions-support/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
-      - run: ros -e '(print (uiop:getenv "PATH"))' -e '(print (ros:opt "wargv0"))'
       - name: Run tests
-        env:
-          PATH: ~/.roswell/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
         run: |
+          PATH="~/.roswell/bin:$PATH"
           /usr/bin/ros -e '(print (uiop:getenv "PATH"))' -e '(print (ros:opt "wargv0"))'
           rove qlot.asd
