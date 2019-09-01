@@ -18,6 +18,7 @@ jobs:
           LISP: ${{ matrix.lisp }}
         run: |
           uname -s
+          PATH="/usr/local/bin:$PATH"
           curl -L https://raw.githubusercontent.com/fukamachi/roswell/github-actions-tests/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
