@@ -20,6 +20,7 @@ jobs:
           uname -s
           uname -s | grep -e MSYS_NT
           echo 'uname -s' | sh
+          echo 'uname -s' | bash
           curl -L https://raw.githubusercontent.com/roswell/roswell/master/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
