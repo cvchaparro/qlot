@@ -33,9 +33,6 @@ jobs:
         if: matrix.os != 'windows-latest'
         run: |
           PATH="~/.roswell/bin:$PATH"
-          pwd
-          cat ~/AppData/Local/config/common-lisp/source-registry.conf.d/*.conf
-          ros -s alexandria -e '(prin1 (alexandria:hash-table-alist ASDF/SOURCE-REGISTRY:*SOURCE-REGISTRY*))'
           rove qlot.asd
       - name: Run tests (Windows)
         if: matrix.os == 'windows-latest'
