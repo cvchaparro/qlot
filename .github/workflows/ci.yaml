@@ -23,5 +23,4 @@ jobs:
       - name: Run tests
         run: |
           PATH="~/.roswell/bin:$PATH"
-          /usr/bin/ros -e '(print (uiop:getenv "PATH"))' -e '(print (ros:opt "wargv0"))'
           rove qlot.asd
